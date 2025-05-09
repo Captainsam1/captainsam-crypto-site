@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Captainsam Marchant Center - Secure Crypto P2P Escrow Services</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00FF94',secondary:'#0A0E17'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Roboto', sans-serif;
+background-color: #0A0E17;
+color: #FFFFFF;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Inter', sans-serif;
+}
+.hero-gradient {
+background: linear-gradient(90deg, rgba(10,14,23,0.95) 0%, rgba(10,14,23,0.8) 50%, rgba(10,14,23,0.4) 100%);
+}
+.card-hover:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(0, 255, 148, 0.1);
+}
+.glow-effect:hover {
+box-shadow: 0 0 15px rgba(0, 255, 148, 0.5);
+}
+.custom-checkbox {
+appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #2D3748;
+border-radius: 4px;
+background-color: transparent;
+cursor: pointer;
+position: relative;
+}
+.custom-checkbox:checked {
+background-color: #00FF94;
+border-color: #00FF94;
+}
+.custom-checkbox:checked::after {
+content: '';
+position: absolute;
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+input:focus, button:focus {
+outline: none;
+box-shadow: 0 0 0 2px rgba(0, 255, 148, 0.3);
+}
+.switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #2D3748;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #00FF94;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+.step-active {
+color: #00FF94;
+border-color: #00FF94;
+}
+.step-line {
+height: 2px;
+background: linear-gradient(to right, #00FF94 50%, #2D3748 50%);
+background-size: 200% 100%;
+transition: all 0.3s ease;
+}
+.step-line-1 { background-position: 100% 0; }
+.step-line-2 { background-position: 100% 0; }
+.step-line-3 { background-position: 100% 0; }
+.step-1-active ~ .step-line-1 { background-position: 0 0; }
+.step-2-active ~ .step-line-2 { background-position: 0 0; }
+.step-3-active ~ .step-line-3 { background-position: 0 0; }
+</style>
+</head>
+<body>
+<!-- Header -->
+<header class="w-full py-4 bg-secondary shadow-lg">
+<div class="container mx-auto px-6 flex justify-between items-center">
+<div class="flex items-center">
+<h1 class="text-2xl font-['Pacifico'] text-white">logo</h1>
+</div>
+<nav class="hidden md:flex space-x-8">
+<a href="#about" class="text-gray-300 hover:text-primary transition duration-300">About</a>
+<a href="#features" class="text-gray-300 hover:text-primary transition duration-300">Features</a>
+<a href="#how-it-works" class="text-gray-300 hover:text-primary transition duration-300">How It Works</a>
+<a href="#services" class="text-gray-300 hover:text-primary transition duration-300">Services</a>
+<a href="#contact" class="text-gray-300 hover:text-primary transition duration-300">Contact</a>
+</nav>
+<div class="flex space-x-4">
+<button class="px-4 py-2 text-white border border-gray-700 hover:border-primary rounded-button transition duration-300 whitespace-nowrap">Login</button>
+<button class="px-4 py-2 bg-primary text-secondary font-medium rounded-button hover:bg-opacity-90 transition duration-300 whitespace-nowrap">Sign Up</button>
+</div>
+<div class="md:hidden w-8 h-8 flex items-center justify-center text-white cursor-pointer">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full bg-secondary overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20crypto%20trading%20platform%20with%20dark%20blue%20background%2C%20glowing%20green%20crypto%20symbols%20and%20network%20connections%2C%20futuristic%20blockchain%20visualization%2C%20high-quality%20professional%20crypto%20trading%20atmosphere%2C%20sleek%20digital%20interface&width=1600&height=800&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="hero-gradient absolute inset-0"></div>
+<div class="container mx-auto px-6 py-20 relative z-10">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 mb-10 md:mb-0">
+<h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Your One-Stop Platform for Gas Fees & P2P Trading</h1>
+<p class="text-xl text-gray-300 mb-8">Fast and reliable gas fee services for SOL, TON, ETH, BNB, POL networks. Trade small crypto assets safely with our local P2P marketplace and Telegram Stars integration.</p>
+<div class="flex flex-col sm:flex-row gap-4 mb-8">
+<div class="bg-secondary bg-opacity-70 backdrop-blur-sm p-4 rounded-lg border border-gray-700">
+<p class="text-primary text-3xl font-bold">5K+</p>
+<p class="text-gray-400">Local Users</p>
+</div>
+<div class="bg-secondary bg-opacity-70 backdrop-blur-sm p-4 rounded-lg border border-gray-700">
+<p class="text-primary text-3xl font-bold">50K+</p>
+<p class="text-gray-400">Gas Fees Paid</p>
+</div>
+<div class="bg-secondary bg-opacity-70 backdrop-blur-sm p-4 rounded-lg border border-gray-700">
+<p class="text-primary text-3xl font-bold">100%</p>
+<p class="text-gray-400">Local Support</p>
+</div>
+</div>
+<button class="px-8 py-3 bg-primary text-secondary font-bold rounded-button hover:bg-opacity-90 transition duration-300 flex items-center whitespace-nowrap">
+Start Trading
+<div class="w-5 h-5 ml-2 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- About Us Section -->
+<section id="about" class="py-20 bg-gradient-to-b from-secondary to-[#131720]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">About Us</h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="w-full md:w-1/2">
+<h3 class="text-2xl font-semibold mb-6">Simplifying Crypto for Everyone</h3>
+<p class="text-gray-300 mb-6">Captainsam Marchant Center is a one-stop platform for local crypto traders offering fast, safe, and reliable peer-to-peer (P2P) services with a special focus on gas fee provisioning and escrow support.</p>
+<p class="text-gray-300 mb-6">We handle gas fees across all major networks including SOL, TON, ETH, BNB, and POL. Our platform makes it easy to buy and sell small crypto assets from any wallet or exchange, with integrated Telegram Stars marketplace support.</p>
+<p class="text-gray-300">Experience hassle-free trading with our local support team, ready to assist you with any transaction. Whether you're dealing with gas fees or P2P trades, we've got you covered.</p>
+</div>
+<div class="w-full md:w-1/2">
+<div class="relative rounded-xl overflow-hidden shadow-2xl">
+<img src="https://readdy.ai/api/search-image?query=secure%20crypto%20transaction%20visualization%2C%20digital%20escrow%20system%2C%20blockchain%20security%20concept%2C%20futuristic%20financial%20protection%2C%20glowing%20green%20and%20blue%20network%20connections%20on%20dark%20background%2C%20high-quality%20professional%20crypto%20security%20illustration&width=600&height=500&seq=about1&orientation=landscape" alt="Secure Crypto Transactions" class="w-full h-auto object-cover">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section id="features" class="py-20 bg-[#131720]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Why Choose Us</h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
+<p class="text-gray-300 mt-6 max-w-2xl mx-auto">Our platform offers unique advantages that make crypto trading secure, efficient, and accessible to everyone.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-secondary p-8 rounded-xl border border-gray-800 card-hover transition duration-300">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-gas-station-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Gas Fee Services</h3>
+<p class="text-gray-400">Quick and affordable gas fee payments for ETH, BNB, SOL, and other major blockchains, with instant processing.</p>
+</div>
+<div class="bg-secondary p-8 rounded-xl border border-gray-800 card-hover transition duration-300">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-customer-service-2-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">24/7 Support</h3>
+<p class="text-gray-400">Our dedicated support team is available around the clock to assist you with any questions or issues you might encounter.</p>
+</div>
+<div class="bg-secondary p-8 rounded-xl border border-gray-800 card-hover transition duration-300">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-rocket-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Fast Transactions</h3>
+<p class="text-gray-400">Our platform is designed for speed and efficiency, allowing you to complete transactions quickly without compromising security.</p>
+</div>
+<div class="bg-secondary p-8 rounded-xl border border-gray-800 card-hover transition duration-300">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-user-star-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Verified Traders</h3>
+<p class="text-gray-400">All traders on our platform undergo KYC verification, creating a trusted community of verified users for safer trading.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-20 bg-[#0A0E17]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">How It Works</h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
+<p class="text-gray-300 mt-6 max-w-2xl mx-auto">Our escrow system makes P2P crypto trading simple, secure, and straightforward in just four easy steps.</p>
+</div>
+<div class="relative">
+<div class="flex flex-col md:flex-row justify-between items-start mb-8">
+<div class="flex flex-col items-center mb-8 md:mb-0 step-1-active">
+<div class="w-16 h-16 rounded-full border-2 border-primary bg-secondary flex items-center justify-center text-primary mb-4 step-active">
+<span class="text-xl font-bold">1</span>
+</div>
+<h3 class="text-xl font-semibold mb-2 text-center">Post Offer</h3>
+<p class="text-gray-400 text-center max-w-xs">Buyer or seller creates a detailed trade listing with their preferred terms.</p>
+</div>
+<div class="hidden md:block w-full step-line step-line-1"></div>
+<div class="flex flex-col items-center mb-8 md:mb-0">
+<div class="w-16 h-16 rounded-full border-2 border-gray-700 bg-secondary flex items-center justify-center text-white mb-4">
+<span class="text-xl font-bold">2</span>
+</div>
+<h3 class="text-xl font-semibold mb-2 text-center">Engage</h3>
+<p class="text-gray-400 text-center max-w-xs">Another party reviews and accepts the offer to begin the trade.</p>
+</div>
+<div class="hidden md:block w-full step-line step-line-2"></div>
+<div class="flex flex-col items-center mb-8 md:mb-0">
+<div class="w-16 h-16 rounded-full border-2 border-gray-700 bg-secondary flex items-center justify-center text-white mb-4">
+<span class="text-xl font-bold">3</span>
+</div>
+<h3 class="text-xl font-semibold mb-2 text-center">Escrow Activated</h3>
+<p class="text-gray-400 text-center max-w-xs">Crypto is securely held in our escrow system during the transaction.</p>
+</div>
+<div class="hidden md:block w-full step-line step-line-3"></div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 rounded-full border-2 border-gray-700 bg-secondary flex items-center justify-center text-white mb-4">
+<span class="text-xl font-bold">4</span>
+</div>
+<h3 class="text-xl font-semibold mb-2 text-center">Confirm Trade</h3>
+<p class="text-gray-400 text-center max-w-xs">Once both sides approve, funds are released to complete the transaction.</p>
+</div>
+</div>
+</div>
+<div class="mt-16 text-center">
+<button class="px-8 py-3 bg-primary text-secondary font-bold rounded-button hover:bg-opacity-90 transition duration-300 whitespace-nowrap">Start Your First Trade</button>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section id="services" class="py-20 bg-[#131720]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Our Services</h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
+<p class="text-gray-300 mt-6 max-w-2xl mx-auto">We offer a comprehensive range of services to meet all your crypto trading needs.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-secondary p-8 rounded-xl border border-gray-800 card-hover transition duration-300">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-exchange-box-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Crypto Escrow</h3>
+<p class="text-gray-400 mb-4">Secure escrow services for BTC, ETH, USDT, and many other cryptocurrencies, ensuring safe transactions between parties.</p>
+<a href="#" class="text-primary hover:underline flex items-center">
+Learn More
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="bg-secondary p-8 rounded-xl border border-gray-800 card-hover transition duration-300">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-global-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">P2P Marketplace</h3>
+<p class="text-gray-400 mb-4">Trade globally with low fees on our user-friendly P2P marketplace, connecting buyers and sellers worldwide.</p>
+<a href="#" class="text-primary hover:underline flex items-center">
+Learn More
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="bg-secondary p-8 rounded-xl border border-gray-800 card-hover transition duration-300">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-wallet-3-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Wallet Integration</h3>
+<p class="text-gray-400 mb-4">Seamlessly integrate with our secure in-platform wallet for safe storage and easy access to your crypto assets.</p>
+<a href="#" class="text-primary hover:underline flex items-center">
+Learn More
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="bg-secondary p-8 rounded-xl border border-gray-800 card-hover transition duration-300">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-gas-station-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold mb-4">Gas Fee Payments</h3>
+<p class="text-gray-400 mb-4">Handle network gas fees for ETH, BNB, SOL, TRX, and other cryptocurrencies with our optimized payment system.</p>
+<a href="#" class="text-primary hover:underline flex items-center">
+Learn More
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-20 bg-[#0A0E17]" style="background-image: url('https://readdy.ai/api/search-image?query=abstract%20crypto%20network%20connections%20on%20dark%20blue%20background%2C%20glowing%20green%20nodes%20and%20lines%2C%20futuristic%20digital%20financial%20concept%2C%20blockchain%20technology%20visualization%2C%20professional%20high-quality%20crypto%20trading%20platform%20background&width=1600&height=400&seq=cta1&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="container mx-auto px-6">
+<div class="max-w-3xl mx-auto bg-secondary bg-opacity-95 p-10 rounded-xl backdrop-blur-sm">
+<div class="text-center">
+<h2 class="text-3xl font-bold mb-6">Ready to Trade with Confidence?</h2>
+<p class="text-gray-300 mb-8">Join thousands of traders who trust Captainsam Marchant Center for secure P2P crypto transactions. Sign up today and experience the difference.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-8 py-3 bg-primary text-secondary font-bold rounded-button hover:bg-opacity-90 transition duration-300 whitespace-nowrap">Create Account</button>
+<button class="px-8 py-3 border border-primary text-primary font-bold rounded-button hover:bg-primary hover:bg-opacity-10 transition duration-300 whitespace-nowrap">View Live Trades</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-[#131720]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
+<p class="text-gray-300 mt-6 max-w-2xl mx-auto">Have a question or need support? Our team is here to help you.</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-12">
+<div class="w-full lg:w-1/2">
+<div class="bg-secondary p-8 rounded-xl border border-gray-800">
+<h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+<div class="flex items-start mb-6">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+<i class="ri-whatsapp-line ri-xl"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">WhatsApp/Call</h4>
+<p class="text-gray-400">+254112412005</p>
+</div>
+</div>
+<div class="flex items-start mb-6">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+<i class="ri-telegram-line ri-xl"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Telegram</h4>
+<p class="text-gray-400">@mwake10</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+<i class="ri-mail-line ri-xl"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Email</h4>
+<p class="text-gray-400">mwakesamson1@gmail.com</p>
+</div>
+</div>
+</div>
+<div class="mt-8 bg-secondary p-8 rounded-xl border border-gray-800">
+<h3 class="text-2xl font-semibold mb-6">Operating Hours</h3>
+<p class="text-gray-400 mb-4">Our customer support team is available 24/7 to assist you with any questions or issues.</p>
+<div class="flex items-center mb-2">
+<div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+<p>Support available now</p>
+</div>
+<p class="text-gray-400">Average response time: <span class="text-primary">5 minutes</span></p>
+</div>
+</div>
+<div class="w-full lg:w-1/2">
+<div class="bg-secondary p-8 rounded-xl border border-gray-800">
+<h3 class="text-2xl font-semibold mb-6">Send Us a Message</h3>
+<form>
+<div class="mb-6">
+<label for="name" class="block text-sm font-medium mb-2">Your Name</label>
+<input type="text" id="name" class="w-full px-4 py-3 bg-[#0A0E17] border border-gray-700 rounded focus:border-primary" placeholder="Enter your name">
+</div>
+<div class="mb-6">
+<label for="email" class="block text-sm font-medium mb-2">Email Address</label>
+<input type="email" id="email" class="w-full px-4 py-3 bg-[#0A0E17] border border-gray-700 rounded focus:border-primary" placeholder="Enter your email">
+</div>
+<div class="mb-6">
+<label for="subject" class="block text-sm font-medium mb-2">Subject</label>
+<input type="text" id="subject" class="w-full px-4 py-3 bg-[#0A0E17] border border-gray-700 rounded focus:border-primary" placeholder="Enter message subject">
+</div>
+<div class="mb-6">
+<label for="message" class="block text-sm font-medium mb-2">Message</label>
+<textarea id="message" rows="5" class="w-full px-4 py-3 bg-[#0A0E17] border border-gray-700 rounded focus:border-primary" placeholder="Enter your message"></textarea>
+</div>
+<button type="submit" class="w-full px-6 py-3 bg-primary text-secondary font-bold rounded-button hover:bg-opacity-90 transition duration-300 whitespace-nowrap">Send Message</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-secondary pt-16 pb-6">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<h1 class="text-2xl font-['Pacifico'] text-white mb-6">logo</h1>
+<p class="text-gray-400 mb-6">Secure Crypto P2P Escrow Services for safe and seamless cryptocurrency trading.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 rounded-full bg-[#1A1F2B] flex items-center justify-center text-gray-400 hover:text-primary transition duration-300">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-[#1A1F2B] flex items-center justify-center text-gray-400 hover:text-primary transition duration-300">
+<i class="ri-telegram-line"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-[#1A1F2B] flex items-center justify-center text-gray-400 hover:text-primary transition duration-300">
+<i class="ri-discord-line"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-[#1A1F2B] flex items-center justify-center text-gray-400 hover:text-primary transition duration-300">
+<i class="ri-instagram-line"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+<ul class="space-y-3">
+<li><a href="#about" class="text-gray-400 hover:text-primary transition duration-300">About Us</a></li>
+<li><a href="#features" class="text-gray-400 hover:text-primary transition duration-300">Features</a></li>
+<li><a href="#how-it-works" class="text-gray-400 hover:text-primary transition duration-300">How It Works</a></li>
+<li><a href="#services" class="text-gray-400 hover:text-primary transition duration-300">Services</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-primary transition duration-300">Contact</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Services</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">Crypto Escrow</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">P2P Marketplace</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">Wallet Integration</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">Gas Fee Payments</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">KYC Verification</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Legal</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">Terms of Service</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">Privacy Policy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">Refund Policy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">KYC/AML Policy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition duration-300">FAQ</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-800">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 mb-4 md:mb-0">© 2025 Captainsam Marchant Center. All rights reserved.</p>
+<div class="flex items-center space-x-4">
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-visa-fill ri-lg"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-mastercard-fill ri-lg"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-paypal-fill ri-lg"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-bitcoin-fill ri-lg"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-ethereum-fill ri-lg"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const menuButton = document.querySelector('.ri-menu-line');
+const nav = document.querySelector('nav');
+if (menuButton && nav) {
+menuButton.addEventListener('click', function() {
+nav.classList.toggle('hidden');
+nav.classList.toggle('flex');
+nav.classList.toggle('flex-col');
+nav.classList.toggle('absolute');
+nav.classList.toggle('top-16');
+nav.classList.toggle('right-6');
+nav.classList.toggle('bg-secondary');
+nav.classList.toggle('p-4');
+nav.classList.toggle('rounded-lg');
+nav.classList.toggle('shadow-lg');
+nav.classList.toggle('z-50');
+});
+}
+});
+document.addEventListener('DOMContentLoaded', function() {
+// How It Works steps interaction
+const steps = document.querySelectorAll('[class*="step-"]');
+const stepLines = document.querySelectorAll('.step-line');
+steps.forEach((step, index) => {
+if (step.classList.contains('step-1-active') ||
+step.classList.contains('step-2-active') ||
+step.classList.contains('step-3-active') ||
+step.classList.contains('step-4-active')) {
+return;
+}
+step.addEventListener('click', function() {
+// Reset all steps
+steps.forEach(s => {
+s.querySelector('.w-16').classList.remove('border-primary', 'text-primary', 'step-active');
+s.querySelector('.w-16').classList.add('border-gray-700', 'text-white');
+});
+// Reset all lines
+stepLines.forEach(line => {
+line.style.backgroundPosition = '100% 0';
+});
+// Activate current step
+this.querySelector('.w-16').classList.remove('border-gray-700', 'text-white');
+this.querySelector('.w-16').classList.add('border-primary', 'text-primary', 'step-active');
+// Activate lines up to current step
+for (let i = 0; i < index; i++) {
+if (stepLines[i]) {
+stepLines[i].style.backgroundPosition = '0 0';
+}
+}
+});
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Form validation
+const form = document.querySelector('form');
+if (form) {
+form.addEventListener('submit', function(e) {
+e.preventDefault();
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+let isValid = true;
+if (nameInput && nameInput.value.trim() === '') {
+nameInput.classList.add('border-red-500');
+isValid = false;
+} else if (nameInput) {
+nameInput.classList.remove('border-red-500');
+}
+if (emailInput && (!emailInput.value.trim() || !emailInput.value.includes('@'))) {
+emailInput.classList.add('border-red-500');
+isValid = false;
+} else if (emailInput) {
+emailInput.classList.remove('border-red-500');
+}
+if (messageInput && messageInput.value.trim() === '') {
+messageInput.classList.add('border-red-500');
+isValid = false;
+} else if (messageInput) {
+messageInput.classList.remove('border-red-500');
+}
+if (isValid) {
+// Simulate form submission
+const submitButton = form.querySelector('button[type="submit"]');
+if (submitButton) {
+submitButton.innerHTML = 'Sending...';
+submitButton.disabled = true;
+setTimeout(() => {
+submitButton.innerHTML = 'Message Sent!';
+submitButton.classList.remove('bg-primary');
+submitButton.classList.add('bg-green-500');
+// Reset form
+form.reset();
+setTimeout(() => {
+submitButton.innerHTML = 'Send Message';
+submitButton.disabled = false;
+submitButton.classList.remove('bg-green-500');
+submitButton.classList.add('bg-primary');
+}, 3000);
+}, 1500);
+}
+}
+});
+}
+});
+</script>
+</body>
+</html>
