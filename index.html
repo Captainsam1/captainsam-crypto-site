@@ -640,3 +640,89 @@ submitButton.classList.add('bg-primary');
 </script>
 </body>
 </html>
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { motion } from "framer-motion";
+
+export default function HomePage() {
+  const [user, setUser] = useState(null);
+
+  return (
+    <main className="p-6 max-w-4xl mx-auto">
+      <motion.h1
+        className="text-3xl font-bold mb-4"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        Crypto Escrow Platform
+      </motion.h1>
+
+      {!user ? (
+        <Card className="mb-6">
+          <CardContent className="space-y-4 p-6">
+            <h2 className="text-xl font-semibold">Register / Login</h2>
+            <Input placeholder="Email" type="email" />
+            <Input placeholder="Password" type="password" />
+            <Button className="w-full">Continue</Button>
+          </CardContent>
+        </Card>
+      ) : (
+        <Tabs defaultValue="dashboard" className="w-full">
+          <TabsList>
+            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+            <TabsTrigger value="deposit">Deposit</TabsTrigger>
+            <TabsTrigger value="withdraw">Withdraw</TabsTrigger>
+            <TabsTrigger value="coins">Coins</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="dashboard">
+            <Card className="mt-4">
+              <CardContent className="p-6">
+                <p className="text-lg">Welcome back, user!</p>
+                <p>Your balance: <strong>0.00 USDT</strong></p>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="deposit">
+            <Card className="mt-4">
+              <CardContent className="space-y-4 p-6">
+                <p>Choose coin to deposit:</p>
+                <Input placeholder="e.g., USDT, BTC, ETH..." />
+                <Button>Generate Deposit Address</Button>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="withdraw">
+            <Card className="mt-4">
+              <CardContent className="space-y-4 p-6">
+                <p>Enter withdrawal details:</p>
+                <Input placeholder="Amount" />
+                <Input placeholder="Recipient address" />
+                <Button>Submit Withdrawal</Button>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="coins">
+            <Card className="mt-4">
+              <CardContent className="p-6 space-y-2">
+                <h3 className="font-semibold text-lg">Listed Coins:</h3>
+                <ul className="list-disc pl-6">
+                  <li>USDT (Tether)</li>
+                  <li>BTC (Bitcoin)</li>
+                  <li>ETH (Ethereum)</li>
+                  <li>BMK (Black Market Coin)</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      )}
+    </main>
+  );
+}
