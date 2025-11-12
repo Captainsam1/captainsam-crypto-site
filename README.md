@@ -7,6 +7,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import axios from 'axios';
 import { ethers } from 'ethers';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,22 +18,22 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Ethers wallet & provider
+// Ethers wallet & provider setup
 const provider = new ethers.providers.JsonRpcProvider(process.env.ALCHEMY_API || '<ALCHEMY_API_URL>');
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY || '<PRIVATE_KEY>', provider);
 
-// Serve simple React front-end from /client
+// Serve React frontend static files (make sure to build your frontend in /client/build before)
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'client/build', 'index.html')));
 
-// MPESA STK Push simulation
+// MPESA STK Push simulation endpoint
 app.post('/api/mpesa/stkpush', async (req, res) => {
   const { phone, amount } = req.body;
   console.log(`STK push requested for phone: ${phone}, amount: ${amount} KES`);
 
   try {
-    // Simulated response instead of real MPESA API call
+    // Simulated MPESA STK Push response (replace with real API logic for production)
     res.json({
       MerchantRequestID: '123456',
       CheckoutRequestID: 'abc123',
@@ -43,26 +46,24 @@ app.post('/api/mpesa/stkpush', async (req, res) => {
   }
 });
 
-// Blockchain transaction relay simulation
+// Blockchain transaction relay simulation endpoint
 app.post('/api/transaction/paygas', async (req, res) => {
   try {
-    // Example TX parameters (replace with real logic)
     const tx = {
       to: req.body.to,
       data: req.body.data,
       gasLimit: req.body.gasLimit || 21000,
-      gasPrice: req.body.gasPrice || ethers.utils.parseUnits('10', 'gwei'),
+      gasPrice: req.body.gasPrice ? ethers.utils.parseUnits(req.body.gasPrice, 'gwei') : ethers.utils.parseUnits('10', 'gwei'),
     };
     const sent = await wallet.sendTransaction(tx);
     await sent.wait();
-
     res.json({ txHash: sent.hash });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Frontend: Minimal React app embedded in the same file for demo purposes
+// Serve inline React app for demo (remove if you use a separate frontend)
 app.get('/client/build/index.html', (req, res) => {
   res.send(`
   <!DOCTYPE html>
